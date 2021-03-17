@@ -8,7 +8,7 @@ let isVideo = false;
 let model = null;
 
 const modelParams = {
-    flipHorizontal: true,   // flip e.g for video  
+    flipHorizontal: true,   // flip e.g for video
     maxNumBoxes: 20,        // maximum number of boxes to detect
     iouThreshold: 0.5,      // ioU threshold for non-max suppression
     scoreThreshold: 0.6,    // confidence threshold for predictions.
@@ -43,9 +43,21 @@ function toggleVideo() {
 
 function runDetection() {
     model.detect(video).then(predictions => {
-        if (predictions.length > 0)
-          console.log("X: ",predictions[0].bbox[0], "\nY: ", predictions[0].bbox[1], "\nÁrea: ", parseFloat(predictions[0].bbox[2])*parseFloat(predictions[0].bbox[3]));
-        model.renderPredictions(predictions, canvas, context, video);
+        if (predictions.length > 0){
+          const data = {"X": predictions[0].bbox[0],
+                        "Y":predictions[0].bbox[1],
+                        "Área":parseFloat(predictions[0].bbox[2])*parseFloat(predictions[0].bbox[3])}
+          console.log(data);
+          fetch('/api/v1/data_upload',{
+            method:'POST',
+            headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                    },
+            body: JSON.stringify(data)
+          })
+          model.renderPredictions(predictions, canvas, context, video);
+        }
         if (isVideo) {
             requestAnimationFrame(runDetection);
         }
