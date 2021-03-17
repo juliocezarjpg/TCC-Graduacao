@@ -20,6 +20,6 @@ def data_upload():
 @app.route('/api/v1/data_download', methods=['GET'])
 def data_download():
     global dados;
-    data = dados.copy;
+    data = dados.copy();
     dados.clear()
     return jsonify(data), '200'
