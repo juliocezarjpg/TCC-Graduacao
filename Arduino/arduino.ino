@@ -6,7 +6,7 @@ SoftwareSerial mySerial(12, 13); // RX, TX
 Servo servo; // define o nome do servo
 Servo garra;
 
-int valores[10] = {};
+int valores[5] = {};
 int total = 0;
 int pos = 0;
 int media;
@@ -52,19 +52,16 @@ void loop() { // run over and over
       height = "";
       //Serial.print(altura);
       //Serial.print ("  -  ");
-      val = map(altura, 60, 190, 50,145);
+      val = map(altura, 70, 478, 50,145);
 
-      total -= valores[pos];
-      valores[pos++] = val;
-      total += val;
-
-      media = total/10;
-
-      if (pos == 10) pos = 0;
-      
-      
-      if (media >= 67 and media <= 145) servo.write(media);
-      Serial.println(media);
+      /*valores[pos++] = val;
+      if (pos == 5){
+        pos = 0;
+        media = mediaVetor(valores,5);*/
+        media = val;
+        if (media >= 67 and media <= 145) servo.write(media);
+        Serial.println(media);
+      //}
      }
     }
   }
@@ -80,4 +77,16 @@ int convert (String height){
   }
 
   return altura;
+}
+
+int mediaVetor(int vet[], int tam){
+  int media, soma = 0;
+  int i;
+
+  for(i =0; i<tam; i++){
+    soma = soma + vet[i];
+  }
+  media = soma/tam;
+
+  return media;
 }
