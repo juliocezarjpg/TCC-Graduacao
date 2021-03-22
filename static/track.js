@@ -46,7 +46,7 @@ function runDetection() {
         if (predictions.length > 0){
           const data = {"X": predictions[0].bbox[0],
                         "Y":predictions[0].bbox[1],
-                        "Área":parseFloat(predictions[0].bbox[2])*parseFloat(predictions[0].bbox[3])}
+                        "Area":parseFloat(predictions[0].bbox[2])*parseFloat(predictions[0].bbox[3])}
           console.log(data);
           fetch('/api/v1/data_upload',{
             method:'POST',

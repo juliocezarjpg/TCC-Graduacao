@@ -44,8 +44,9 @@ function toggleVideo() {
 function runDetection() {
     model.detect(video).then(predictions => {
         if (predictions.length > 0)
-          console.log("X: ",predictions[0].bbox[0], "\nY: ", predictions[0].bbox[1], "\nÁrea: ", parseFloat(predictions[0].bbox[2])*parseFloat(predictions[0].bbox[3]));
-        model.renderPredictions(predictions, canvas, context, video);
+            console.log("Oii")
+            console.log("X: ",predictions[0].bbox[0], "\nY: ", predictions[0].bbox[1], "\nÁrea: ", parseFloat(predictions[0].bbox[2])*parseFloat(predictions[0].bbox[3]));
+            model.renderPredictions(predictions, canvas, context, video);
         if (isVideo) {
             requestAnimationFrame(runDetection);
         }
