@@ -37,13 +37,13 @@ def data_start():
     timestamp = datetime.timestamp(now)
     return jsonify(timestamp), '200'
 
-@app.route('/api/v1/finish', methods=['POST'])
+@app.route('/api/v1/end', methods=['POST'])
 def data_end():
     global dados
     global status
     status = 0
     dados.clear()
-    return jsonify(status), '200'
+    return '200'
 
 @app.route('/api/v1/status', methods=['GET'])
 def data_status():
