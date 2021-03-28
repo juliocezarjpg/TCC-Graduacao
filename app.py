@@ -16,6 +16,8 @@ def index():
 def data_upload():
     global dados
     json = request.get_json()
+    now = datetime.now()
+    json['timestamp']  = datetime.timestamp(now)
     dados.append(json)
     print(json)
     return '200'
