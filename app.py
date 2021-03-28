@@ -31,5 +31,5 @@ def data_start():
     global dados
     dados.clear()
     now = datetime.now()
-    hr_string = now.strftime("%H:%M:%S")
-    return jsonify(hr_string), '200'
+    timestamp = datetime.timestamp(now)
+    return jsonify(timestamp), '200'
