@@ -3,6 +3,7 @@ const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 let trackButton = document.getElementById("trackbutton");
 let updateNote = document.getElementById("updatenote");
+let updateStatus = document.getElementById("updatestatus");
 
 let isVideo = false;
 let model = null;
@@ -39,8 +40,6 @@ function toggleVideo() {
     }
 }
 
-
-
 function runDetection() {
     model.detect(video).then(predictions => {
         if (predictions.length > 0){
@@ -71,3 +70,14 @@ handTrack.load(modelParams).then(lmodel => {
     updateNote.innerText = "Loaded Model!"
     trackButton.disabled = false
 });
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  
+    next();
+  });
