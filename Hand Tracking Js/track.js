@@ -46,7 +46,16 @@ function runDetection() {
         if (predictions.length > 0)
             console.log("Oii")
             console.log(predictions)
-            console.log("X: ",predictions[0].bbox[0], "\nY: ", predictions[0].bbox[1], "\nÁrea: ", parseFloat(predictions[0].bbox[2])*parseFloat(predictions[0].bbox[3]));
+            //console.log("X: ",predictions[0].bbox[0], "\nY: ", predictions[0].bbox[1], "\nÁrea: ", parseFloat(predictions[0].bbox[2])*parseFloat(predictions[0].bbox[3]));
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch("https://tcc-julio.herokuapp.com/api/v1/status", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
             model.renderPredictions(predictions, canvas, context, video);
         if (isVideo) {
             requestAnimationFrame(runDetection);
@@ -61,3 +70,14 @@ handTrack.load(modelParams).then(lmodel => {
     updateNote.innerText = "Loaded Model!"
     trackButton.disabled = false
 });
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  
+    next();
+  });
