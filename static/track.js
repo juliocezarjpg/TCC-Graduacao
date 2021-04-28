@@ -41,7 +41,7 @@ function toggleVideo() {
 }
 
 function runDetection() {
-    console.log('fetching')
+    console.log('fetch get')
     fetch('/api/v1/status',{
     method:'GET'})
     .then(response => response.text())
