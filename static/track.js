@@ -45,7 +45,7 @@ function runDetection() {
     method:'GET'})
     .then(response => response.text())
     .then(result => {
-        if (result == "1"){
+        if (result == 1){
             updatestatus.innerText = "Braço ligado!"
         }
         else{
