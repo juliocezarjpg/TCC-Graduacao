@@ -41,13 +41,17 @@ function toggleVideo() {
 }
 
 function runDetection() {
-    console.log('fetch get')
     fetch('/api/v1/status',{
     method:'GET'})
     .then(response => response.text())
     .then(result => {
-        console.log(result)
-        updateNote.innerText = result
+        if (result == "1"){
+            updatestatus.innerText = "Braço ligado!"
+        }
+        else{
+            updatestatus.innerText = "Braço desligado!"
+        }
+        
     })
     .catch(error => console.log('error', error));
             
