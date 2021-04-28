@@ -7,7 +7,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 dados = []
-status = 0
+status = 2
 
 @app.route('/')
 def index():
