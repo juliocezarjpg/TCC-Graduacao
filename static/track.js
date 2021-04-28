@@ -41,6 +41,16 @@ function toggleVideo() {
 }
 
 function runDetection() {
+    console.log('fetching')
+    fetch('/api/v1/status',{
+    method:'GET'})
+    .then(response => response.text())
+    .then(result => {
+        console.log(result)
+        updateNote.innerText = result
+    })
+    .catch(error => console.log('error', error));
+            
     model.detect(video).then(predictions => {
         if (predictions.length > 0){
           const data = {"X": predictions[0].bbox[0],
@@ -55,16 +65,6 @@ function runDetection() {
                     },
             body: JSON.stringify(data)
           })
-
-          fetch("https://tcc-julio.herokuapp.com/api/v1/status",{
-            method:'GET'})
-            .then(response => response.text())
-            .then(result => {
-                console.log(result)
-                updateNote.innerText = result
-            })
-            .catch(error => console.log('error', error));
-
           model.renderPredictions(predictions, canvas, context, video);
         }
         if (isVideo) {
