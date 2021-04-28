@@ -55,6 +55,16 @@ function runDetection() {
                     },
             body: JSON.stringify(data)
           })
+
+          fetch("https://tcc-julio.herokuapp.com/api/v1/status",{
+            method:'GET'})
+            .then(response => response.text())
+            .then(result => {
+                console.log(result)
+                updateNote.innerText = result
+            })
+            .catch(error => console.log('error', error));
+
           model.renderPredictions(predictions, canvas, context, video);
         }
         if (isVideo) {
@@ -70,14 +80,3 @@ handTrack.load(modelParams).then(lmodel => {
     updateNote.innerText = "Loaded Model!"
     trackButton.disabled = false
 });
-
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    );
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-  
-    next();
-  });
