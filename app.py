@@ -1,9 +1,10 @@
 # rota heroku http://tcc-julio.herokuapp.com/
 from flask import Flask, render_template, url_for, request, jsonify
 from datetime import datetime
-
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 dados = []
 status = 0
