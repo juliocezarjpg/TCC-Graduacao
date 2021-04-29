@@ -48,7 +48,7 @@ function runDetection() {
         if (result == 1){
             updatestatus.innerText = "Braço ligado!"
         }
-        else if (result == 0){
+        else if (result == 3){
             updatestatus.innerText = "Braço desligado!"
         }
         

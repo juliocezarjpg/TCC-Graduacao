@@ -44,7 +44,7 @@ def data_start():
 def data_end():
     global dados
     global status
-    status = 0
+    status = 3
     dados.clear()
     return '200'
 
