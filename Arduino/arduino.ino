@@ -10,6 +10,7 @@ int valores[5] = {};
 int total = 0;
 int pos = 0;
 int media;
+int mao = 0; // 0 - aberta, 1 - fechada
 
 String height = "";
 char c;
@@ -39,9 +40,11 @@ void loop() { // run over and over
      c = mySerial.read();
      if (c == ')'){ // Abre
       garra.write(50);
+      mao = 0;
      }
      else if(c == '('){ // Fecha
       garra.write(105);
+      mao = 1;
       }
       else{
      
@@ -50,9 +53,12 @@ void loop() { // run over and over
       //height += '*';
       altura = convert(height);
       height = "";
+      if (mao == 0){ //mão aberta
+        altura = ceil(altura*0.75);
+      }
       //Serial.print(altura);
       //Serial.print ("  -  ");
-      val = map(altura, 70, 478, 50,145);
+      val = map(altura, 70, 300, 50,107);
 
       /*valores[pos++] = val;
       if (pos == 5){
