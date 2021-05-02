@@ -1,13 +1,34 @@
 # rota heroku http://tcc-julio.herokuapp.com/
-from flask import Flask, render_template, url_for, request, jsonify
+from flask import Flask, render_template, url_for, request, jsonify, g
 from datetime import datetime
 from flask_cors import CORS
+import sqlite3
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+DATABASE = 'database/database.db'
+
 dados = []
-status = 2
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+def set_status(status):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute(f'UPDATE status SET status = {status}  where id = 1')
+    db.commit()
+
+def get_status():
+    db = get_db()
+    cur = db.cursor()
+    status = list(cur.execute('SELECT status FROM status WHERE id = 1'))
+    return status[0][0]
+
 
 @app.route('/')
 def index():
@@ -33,8 +54,7 @@ def data_download():
 @app.route('/api/v1/start', methods=['GET'])
 def data_start():
     global dados
-    global status
-    status = 1
+    set_status(1)   
     dados.clear()
     now = datetime.now()
     timestamp = datetime.timestamp(now)
@@ -43,12 +63,18 @@ def data_start():
 @app.route('/api/v1/end', methods=['POST'])
 def data_end():
     global dados
-    global status
-    status = 3
+    set_status(3)
     dados.clear()
     return '200'
 
 @app.route('/api/v1/status', methods=['GET'])
 def data_status():
-    global status
-    return jsonify(status), '200'
+    return str(get_status()), '200'
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+
