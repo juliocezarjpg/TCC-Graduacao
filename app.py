@@ -10,6 +10,7 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 DATABASE = 'database/database.db'
 
 dados = []
+img = []
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -77,4 +78,10 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-
+@app.route('/api/v1/img_upload', methods=['POST'])
+def img_upload():
+    global img
+    json = request.get_json()
+    img = json
+    print(img)
+    return '200'
