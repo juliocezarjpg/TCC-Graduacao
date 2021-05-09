@@ -56,13 +56,11 @@ function runDetection() {
     })
     .catch(error => console.log('error', error));
 
-    console.log("Ola")
     fetch("https://tcc-julio.herokuapp.com/api/v1/img_download",
     {method:'GET'})
     .then(response => response.text())
     .then(result => {
-        console.log("Tudo")
-        //image.src = result
+        image.src = atob(result)
         console.log(result)
     })
     .catch(error => console.log('error', error));
