@@ -81,7 +81,7 @@ def close_connection(exception):
 @app.route('/api/v1/img_upload', methods=['POST'])
 def img_upload():
     global img
-    json = request.get_json()
+    json = request.args.get('a')
     img = json
     print(json)
     return str(json), '200'
