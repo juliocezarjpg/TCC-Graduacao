@@ -83,7 +83,7 @@ def img_upload():
     global img
     json = request.get_json()
     img = json
-    print(img)
+    print(json)
     return str(json), '200'
 
 @app.route('/api/v1/img_download', methods=['GET'])
