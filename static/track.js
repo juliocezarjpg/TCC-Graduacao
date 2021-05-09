@@ -4,6 +4,7 @@ const context = canvas.getContext("2d");
 let trackButton = document.getElementById("trackbutton");
 let updateNote = document.getElementById("updatenote");
 let updateStatus = document.getElementById("updatestatus");
+let imagem = document.getElementById("img");
 
 let isVideo = false;
 let model = null;
@@ -54,6 +55,11 @@ function runDetection() {
         
     })
     .catch(error => console.log('error', error));
+
+    fetch("https://tcc-julio.herokuapp.com/api/v1/img_download",{method:'GET'})
+        .then(response => response.text())
+        .then(result => image.src = result)
+        .catch(error => console.log('error', error));
             
     model.detect(video).then(predictions => {
         if (predictions.length > 0){
