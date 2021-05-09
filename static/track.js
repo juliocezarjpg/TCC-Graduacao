@@ -60,7 +60,7 @@ function runDetection() {
     {method:'GET'})
     .then(response => response.text())
     .then(result => {
-        stream.src = atob(result)
+        stream.src = 'data:image/jpg;base64,'+ result
         console.log(result)
     })
     .catch(error => console.log('error', error));
