@@ -4,7 +4,7 @@ const context = canvas.getContext("2d");
 let trackButton = document.getElementById("trackbutton");
 let updateNote = document.getElementById("updatenote");
 let updateStatus = document.getElementById("updatestatus");
-let imagem = document.getElementById("img");
+let stream = document.getElementById("img");
 
 let isVideo = false;
 let model = null;
@@ -60,7 +60,7 @@ function runDetection() {
     {method:'GET'})
     .then(response => response.text())
     .then(result => {
-        image.src = atob(result)
+        stream.src = atob(result)
         console.log(result)
     })
     .catch(error => console.log('error', error));
