@@ -93,7 +93,7 @@ def close_connection(exception):
 def img_upload():
     json = request.get_json()
     #img = str(json)
-    #set_image(str(json))
+    set_image(str(json))
     return str(json), '200'
 
 @app.route('/api/v1/img_download', methods=['GET'])
