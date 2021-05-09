@@ -85,3 +85,8 @@ def img_upload():
     img = json
     print(img)
     return '200'
+
+@app.route('/api/v1/img_download', methods=['GET'])
+def img_download():
+    global img
+    return jsonify(img), '200'
