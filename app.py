@@ -30,10 +30,9 @@ def get_status():
     return status[0][0]
 
 def set_image(image):
-    print(f'UPDATE stream SET stream = {image}  where id = 1')
     db = get_db()
     cur = db.cursor()
-    cur.execute(f"UPDATE stream SET stream = '{image}'  where id = 1")
+    cur.execute(f"UPDATE stream SET stream = '{image}' where id = 1")
     db.commit()
 
 def get_image():
