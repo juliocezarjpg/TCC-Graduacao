@@ -30,15 +30,17 @@ def get_status():
     return status[0][0]
 
 def set_image(image):
+    print(f'UPDATE stream SET stream = {image}  where id = 1')
     db = get_db()
     cur = db.cursor()
-    cur.execute(f'UPDATE stream SET stream = {image}  where id = 1')
+    cur.execute(f"UPDATE stream SET stream = '{image}'  where id = 1")
     db.commit()
 
 def get_image():
     db = get_db()
     cur = db.cursor()
     image = list(cur.execute('SELECT stream FROM stream WHERE id = 1'))
+    print(image)
     return image[0][0]
 
 
@@ -92,8 +94,7 @@ def close_connection(exception):
 @app.route('/api/v1/img_upload', methods=['POST'])
 def img_upload():
     json = request.get_json()
-    #img = str(json)
-    set_image(str(json))
+    set_image(str(json['img']))
     return str(json), '200'
 
 @app.route('/api/v1/img_download', methods=['GET'])
