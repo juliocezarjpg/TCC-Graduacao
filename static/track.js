@@ -60,8 +60,7 @@ function runDetection() {
     {method:'GET'})
     .then(response => response.text())
     .then(result => {
-        obj = JSON.parse(result)
-        stream.src = 'data:image/jpg;base64,'+ obj.img
+        stream.src = 'data:image/jpg;base64,'+ result
     })
     .catch(error => console.log('error', error));
             
