@@ -31,13 +31,13 @@ function startVideo() {
 
 function toggleVideo() {
     if (!isVideo) {
-        updateNote.innerText = "Starting video"
+        updateNote.innerText = "Iniciando a câmera"
         startVideo();
     } else {
-        updateNote.innerText = "Stopping video"
+        updateNote.innerText = "Parando a câmera"
         handTrack.stopVideo(video)
         isVideo = false;
-        updateNote.innerText = "Video stopped"
+        updateNote.innerText = "Câmera parada"
     }
 }
 
