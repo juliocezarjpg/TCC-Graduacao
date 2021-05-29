@@ -18,7 +18,8 @@ body {
 }
 
 .mb10 {
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    padding: 20px;
 }
 
 .mt10 {
