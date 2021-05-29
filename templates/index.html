@@ -3,7 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>TCC </title>
+  <p1>Instituto Federal da Paraíba - Campus João Pessoa</p1>
+  <title>Trabalho de Conclusão de Curso</title>
+  <p>Manipulação Remota de Braço Robótico por Meio de Processamento de Imagens</p>
   <link rel="stylesheet" href="https://unpkg.com/carbon-components@latest/css/carbon-components.css" />
   <!-- <link rel="stylesheet" href="track.css"> -->
   <link rel="stylesheet" href={{url_for('static',filename='track.css')}}>
@@ -16,17 +18,17 @@
   </div>
   <div class="mb10">
     <button onclick="toggleVideo()" id="trackbutton" class="bx--btn bx--btn--secondary" type="button">
-      Toggle Video
+      Liga Câmera
     </button>
-    <div id="updatenote" class="updatenote mt10"> loading model ..</div>
-    <div id="updatestatus" class="updatenote mt10"> Braço Desligado</div>
-
   </div>
+  <div id="updatenote" class="updatenote mt10"> Carregando modelo de processamento de imagens...</div>
+  <div id="updatestatus" class="updatenote mt10"> Braço Desligado</div>
   <video class="videobox canvasbox" autoplay="autoplay" id="myvideo"></video>
 
   <canvas id="canvas" class="border canvasbox"></canvas>
 
   <div id="main_img">
+    <p>Streaming de Vídeo</p>
     <img id="img" src="">
   </div>
 

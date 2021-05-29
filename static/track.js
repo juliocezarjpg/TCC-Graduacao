@@ -90,6 +90,6 @@ function runDetection() {
 handTrack.load(modelParams).then(lmodel => {
     // detect objects in the image.
     model = lmodel
-    updateNote.innerText = "Loaded Model!"
+    updateNote.innerText = "Modelo de processamento de imagens carregado!"
     trackButton.disabled = false
 });
