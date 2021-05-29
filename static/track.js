@@ -20,7 +20,7 @@ function startVideo() {
     handTrack.startVideo(video).then(function (status) {
         console.log("video started", status);
         if (status) {
-            updateNote.innerText = "Video started. Now tracking"
+            updateNote.innerText = "Câmera iniciada"
             isVideo = true
             runDetection()
         } else {
