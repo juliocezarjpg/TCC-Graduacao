@@ -3,9 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <p1>Instituto Federal da Paraíba - Campus João Pessoa</p1>
   <title>Trabalho de Conclusão de Curso</title>
-  <p>Manipulação Remota de Braço Robótico por Meio de Processamento de Imagens</p>
   <link rel="stylesheet" href="https://unpkg.com/carbon-components@latest/css/carbon-components.css" />
   <!-- <link rel="stylesheet" href="track.css"> -->
   <link rel="stylesheet" href={{url_for('static',filename='track.css')}}>
@@ -14,15 +12,22 @@
 <body class="bx--body p20">
   <!-- <img id="img" src="hand.jpg"/>  -->
   <div class="p20">
-    TCC
+    <p2>Instituto Federal da Paraíba - Campus João Pessoa</p1>
+    <p1>Trabalho de Conclusão de Curso</p1>
+    <p>Manipulação Remota de Braço Robótico por Meio de Processamento de Imagens</p>
   </div>
   <div class="mb10">
     <button onclick="toggleVideo()" id="trackbutton" class="bx--btn bx--btn--secondary" type="button">
       Liga Câmera
     </button>
   </div>
-  <div id="updatenote" class="updatenote mt10"> Carregando modelo de processamento de imagens...</div>
-  <div id="updatestatus" class="updatenote mt10"> Braço Desligado</div>
+  <div class = "mb10">
+    <div id="updatenote" class="updatenote mt10"> Carregando modelo de processamento de imagens...</div>
+    <div id="updatestatus" class="updatenote mt10"> Braço Desligado</div>
+  </div>
+
+ 
+  
   <video class="videobox canvasbox" autoplay="autoplay" id="myvideo"></video>
 
   <canvas id="canvas" class="border canvasbox"></canvas>
